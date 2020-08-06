@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorEditTextLine"
+    android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:background="#436DF1"
+        android:layout_height="@dimen/toolbar_margin_top"/>
+    <ScrollView
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="#436DF1"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运输管理"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="24sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_pol"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/item_bg_bill">
+                <LinearLayout
+                    android:id="@+id/layout_New_delivery_plan"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="新建提货计划"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout android:id="@+id/layout_New_return_plan"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="新建返箱计划"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_New_waybill"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_edit_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="新建运单"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+               >
+                <LinearLayout
+                    android:id="@+id/layout_I_shipped_it"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_folder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="我发运的"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_I_took_it"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_xls_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="我收的"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_Bill_of_lading_management"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_edit_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="提单管理"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                >
+                <LinearLayout
+                    android:id="@+id/layout_Freight_inquiry"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="运费查询"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_Invoice_Inquiry"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="开票查询"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_Freight_settlement"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_edit_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="运费结算"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                >
+                <LinearLayout
+                    android:id="@+id/layout_contract_management"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="合同管理"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_Goods_management"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="货物管理"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_Code_scanning_packing"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_edit_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="扫码装箱"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                >
+                <LinearLayout
+                    android:id="@+id/layout_return_box"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="返箱管理"
+                        android:textColor="@color/colorMainBlack"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="新建返箱计划"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_edit_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="新建运单"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <include layout="@layout/titlebar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorEditTextLine">
+        <ScrollView
+            android:layout_above="@+id/layout_button"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/item_bg_bill"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/image_pic"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:background="@color/colorOrange" />
+
+            <TextView
+                android:id="@+id/tv_packing_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="包装名称"
+                android:textColor="#ff2b2c44"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="型号："
+                    android:textColor="#ff9c9db3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SE1564798"
+                    android:textColor="#ff2b2c44"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="尺寸："
+                    android:textColor="#ff9c9db3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="123*400*700"
+                    android:textColor="#ff2b2c44"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorEditTextLine" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="编号范围"
+                android:textColor="#ff2b2c44"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <EditText
+                    android:id="@+id/et_start"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+
+                    android:background="@color/colorEditTextLine"
+                    android:gravity="center"
+                    android:textColor="@color/colorMainBlack"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="至"
+                    android:textColor="#ff2b2c44"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/et_end"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+
+                    android:background="@color/colorEditTextLine"
+                    android:gravity="center"
+                    android:textColor="@color/colorMainBlack"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_top"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1.如设置编号范围为1-10，可以下载或打印10个不同二维码。"
+                android:textColor="#ff9c9db3"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="2.二维码可粘贴至箱子表面，装货时通过扫一扫的“装货”完成装货。"
+                android:textColor="#ff9c9db3"
+                android:textSize="12sp" />
+        </LinearLayout>
+</LinearLayout>
+        </ScrollView>
+        <LinearLayout
+            android:id="@+id/layout_button"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@+id/layout_c"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorWhite"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <LinearLayout
+                android:id="@+id/layout_down_load"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_shape_blue"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/icon_download" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="下载二维码"
+                    android:textColor="@color/colorMain"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_print"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_bg_theme"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/icon_printing" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="打印二维码"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

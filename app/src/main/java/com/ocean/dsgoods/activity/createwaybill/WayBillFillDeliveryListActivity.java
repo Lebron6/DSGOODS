@@ -11,11 +11,23 @@ import android.widget.TextView;
 import com.ocean.dsgoods.R;
 import com.ocean.dsgoods.activity.BaseActivity;
 import com.ocean.dsgoods.activity.createbill.SetTransportationActivity;
+import com.ocean.dsgoods.adapter.AddInitTwoAdapter;
 import com.ocean.dsgoods.adapter.FillBillAdapter;
+import com.ocean.dsgoods.adapter.WillBillOneAdapter;
+import com.ocean.dsgoods.api.BaseUrl;
+import com.ocean.dsgoods.api.HttpUtil;
+import com.ocean.dsgoods.entity.AddInitOne;
+import com.ocean.dsgoods.entity.AddInitTwo;
+import com.ocean.dsgoods.entity.ApiResponse;
+import com.ocean.dsgoods.tools.PreferenceUtils;
 import com.ocean.dsgoods.tools.RecyclerViewHelper;
+import com.ocean.dsgoods.tools.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by James on 2020/6/30.
@@ -49,9 +61,14 @@ public class WayBillFillDeliveryListActivity extends BaseActivity {
     Button btnLast;
     @BindView(R.id.btn_next)
     Button btnNext;
+    private AddInitTwoAdapter adapter;
+    public static String T_ID="T_ID";
+    public static String PLW_ID="PLW_ID";
 
-    public static void actionStart(Context context) {
+    public static void actionStart(Context context,String t_id,String plw_id) {
         Intent intent = new Intent(context, WayBillFillDeliveryListActivity.class);
+        intent.putExtra(T_ID,t_id);
+        intent.putExtra(PLW_ID,plw_id);
         context.startActivity(intent);
     }
 
@@ -67,13 +84,31 @@ public class WayBillFillDeliveryListActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        FillBillAdapter adapter = new FillBillAdapter(this);
-        RecyclerViewHelper.initRecyclerViewV(this, rvFillBill, false, adapter);
+        adapter = new AddInitTwoAdapter(this);
     }
 
     @Override
     protected void initDatas() {
+        getData();
+    }
+    private void getData() {
+        HttpUtil.createRequest(TAG, BaseUrl.getInstence().addInitTwo()).addInitTwo(PreferenceUtils.getInstance().getUserToken(),getIntent().getStringExtra(T_ID),getIntent().getStringExtra(PLW_ID)).enqueue(new Callback<AddInitTwo>() {
+            @Override
+            public void onResponse(Call<AddInitTwo> call, Response<AddInitTwo> response) {
+                if (response.body() != null) {
+                    if (response.body().getCode() == 1) {
+                        adapter.setDatas(response.body());
+                    } else {
+                        ToastUtil.showToast(response.body().getMsg());
+                    }
+                }
+            }
 
+            @Override
+            public void onFailure(Call<AddInitTwo> call, Throwable t) {
+                ToastUtil.showToast("网络异常:获取列表数据失败");
+            }
+        });
     }
 
 
@@ -84,7 +119,7 @@ public class WayBillFillDeliveryListActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.btn_next:
-                SetTransportationActivity.actionStart(this);
+//                SetTransportationActivity.actionStart(this, new Gson().toJson(goods));
                 break;
         }
     }

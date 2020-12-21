@@ -1,30 +1,44 @@
 package com.ocean.dsgoods.activity;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.liaoinstan.springview.widget.SpringView;
 import com.ocean.dsgoods.R;
+import com.ocean.dsgoods.adapter.SelectAddressAdapter;
 import com.ocean.dsgoods.adapter.SortAdapter;
-import com.ocean.dsgoods.entity.SortModelInfo;
-import com.ocean.dsgoods.tools.CharacterParser;
-import com.ocean.dsgoods.tools.PinyinComparator;
-import com.ocean.dsgoods.view.ClearEditText;
-import com.ocean.dsgoods.view.SideBar;
+import com.ocean.dsgoods.api.BaseUrl;
+import com.ocean.dsgoods.api.HttpUtil;
+import com.ocean.dsgoods.entity.ApiResponse;
+import com.ocean.dsgoods.entity.SupplierList;
+import com.ocean.dsgoods.tools.PreferenceUtils;
+import com.ocean.dsgoods.tools.RecyclerViewHelper;
+import com.ocean.dsgoods.tools.SimpleFooter;
+import com.ocean.dsgoods.tools.SimpleHeader;
+import com.ocean.dsgoods.tools.TitleManger;
+import com.ocean.dsgoods.tools.ToastUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.ocean.dsgoods.activity.SelectAddressActivity.CALLBACK;
+import static com.ocean.dsgoods.activity.SelectAddressActivity.PARMS;
 
 /**
  * Created by James on 2020/7/29.
@@ -39,29 +53,27 @@ public class SelectSupplierActivity extends BaseActivity {
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.filter_edit)
-    ClearEditText filterEdit;
+    EditText filterEdit;
     @BindView(R.id.tv_search)
     TextView tvSearch;
     @BindView(R.id.lv_supplier)
     ListView lvSupplier;
-    @BindView(R.id.dialog)
-    TextView dialog;
-    @BindView(R.id.sidebar)
-    SideBar sidebar;
-    private CharacterParser characterParser;
-    private List<SortModelInfo> SourceDateList;
+    @BindView(R.id.sv_list)
+    SpringView svList;
 
-    private PinyinComparator pinyinComparator;
     private SortAdapter adapter;
 
-    public static void actionStart(Context context) {
+    public static void actionStartForResult(Activity context) {
         Intent intent = new Intent(context, SelectSupplierActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent, PARMS);
     }
 
     @Override
     protected void initTitle() {
-
+        TitleManger manger = TitleManger.getInsetance();
+        manger.setContext(this);
+        manger.setTitle("选择供应商");
+        manger.setBack();
     }
 
     @Override
@@ -71,100 +83,124 @@ public class SelectSupplierActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        characterParser = CharacterParser.getInstance();
-
-        pinyinComparator = new PinyinComparator();
-        SourceDateList = filledData();
-        Collections.sort(SourceDateList, pinyinComparator);
-        adapter = new SortAdapter(this, SourceDateList);
+        adapter = new SortAdapter(this, listBeans);
         lvSupplier.setAdapter(adapter);
-        sidebar.setTextView(dialog);
-        filterEdit.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterData(s.toString());
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-        sidebar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
-
-            @Override
-            public void onTouchingLetterChanged(String s) {
-
-                int position = adapter.getPositionForSection(s.charAt(0));
-                if (position != -1) {
-                    lvSupplier.setSelection(position);
-                }
-
-            }
-        });
+        initSpringViewStyle();
     }
 
     @Override
     protected void initDatas() {
-
+        getData();
     }
 
     @OnClick(R.id.tv_search)
     public void onViewClicked() {
-    }
-
-    private List<SortModelInfo> filledData() {
-        List<SortModelInfo> mSortList = new ArrayList<SortModelInfo>();
-
-        for (int i = 0; i < 20; i++) {
-            SortModelInfo sortModelInfo = new SortModelInfo();
-            if (i<10){
-                sortModelInfo.setName("胡");
-            }else{
-                sortModelInfo.setName("谷");
-            }
-
-            sortModelInfo.setId(i);
-            sortModelInfo.setKpi("86");
-            sortModelInfo.setNum("0204"+i);
-            sortModelInfo.setDispatch("允许");
-            String pinyin = characterParser.getSelling(sortModelInfo.getName());
-            String sortString = pinyin.substring(0, 1).toUpperCase();
-
-            if (sortString.matches("[A-Z]")) {
-                sortModelInfo.setSortLetters(sortString.toUpperCase());
-            } else {
-                sortModelInfo.setSortLetters("#");
-            }
-
-            mSortList.add(sortModelInfo);
+        if (TextUtils.isEmpty(filterEdit.getText().toString())) {
+            ToastUtil.showToast("请输入搜索内容");
+            return;
         }
-        return mSortList;
+        search();
     }
 
-    private void filterData(String filterStr) {
-        List<SortModelInfo> filterDateList = new ArrayList<SortModelInfo>();
-
-        if (TextUtils.isEmpty(filterStr)) {
-            filterDateList = SourceDateList;
-        } else {
-            filterDateList.clear();
-            for (SortModelInfo sortModelInfo : SourceDateList) {
-                String name = sortModelInfo.getName();
-                if (name.indexOf(filterStr.toString()) != -1 || characterParser.getSelling(name).startsWith(filterStr.toString())) {
-                    filterDateList.add(sortModelInfo);
+    private void search() {
+        page = 1;
+        HttpUtil.createRequest(BaseUrl.getInstence().supplier_list()).getSupplier(PreferenceUtils.getInstance().getUserToken(), page + "", filterEdit.getText().toString()).enqueue(new Callback<ApiResponse<SupplierList>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<SupplierList>> call, Response<ApiResponse<SupplierList>> response) {
+                if (response.body().getCode() == 1) {
+                    if (svList != null) {
+                        svList.onFinishFreshAndLoad();
+                    }
+                    if (response.body() != null) {
+                        if (response.body().getCode() == 1) {
+                            if (page == 1) {
+                                listBeans.clear();
+                                listBeans.addAll(response.body().getData().getList());
+                            } else {
+                                listBeans.addAll(response.body().getData().getList());
+                            }
+                            adapter.updateListView(listBeans);
+                        } else {
+                            ToastUtil.showToast(response.body().getMsg());
+                        }
+                    }
+                } else {
+                    ToastUtil.showToast(response.body().getMsg());
                 }
             }
+
+            @Override
+            public void onFailure(Call<ApiResponse<SupplierList>> call, Throwable t) {
+                ToastUtil.showToast("网络异常:查询供应商失败");
+            }
+        });
+    }
+
+    private void initSpringViewStyle() {
+        svList.setType(SpringView.Type.FOLLOW);
+        svList.setListener(onFreshListener);
+        svList.setHeader(new SimpleHeader(this));
+        svList.setFooter(new SimpleFooter(this));
+    }
+
+    List<SupplierList.ListBean> listBeans = new ArrayList<>();
+    private int page = 1;
+    SpringView.OnFreshListener onFreshListener = new SpringView.OnFreshListener() {
+        @Override
+        public void onRefresh() {
+            page = 1;
+            getData();
         }
 
-        Collections.sort(filterDateList, pinyinComparator);
-        adapter.updateListView(filterDateList);
+        @Override
+        public void onLoadmore() {
+            page = ++page;
+            getData();
+        }
+    };
+
+    private void getData() {
+
+        HttpUtil.createRequest(BaseUrl.getInstence().supplier_list()).getSupplier(PreferenceUtils.getInstance().getUserToken(), page + "").enqueue(new Callback<ApiResponse<SupplierList>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<SupplierList>> call, Response<ApiResponse<SupplierList>> response) {
+                if (response.body().getCode() == 1) {
+                    if (svList != null) {
+                        svList.onFinishFreshAndLoad();
+                    }
+                    if (response.body() != null) {
+                        if (response.body().getCode() == 1) {
+                            if (page == 1) {
+                                listBeans.clear();
+                                listBeans.addAll(response.body().getData().getList());
+                            } else {
+                                listBeans.addAll(response.body().getData().getList());
+                            }
+                            adapter.updateListView(listBeans);
+                            lvSupplier.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    Intent intent = new Intent();
+                                    intent.putExtra(CALLBACK, new Gson().toJson(listBeans.get(i)));
+                                    setResult(3, intent);
+                                    finish();
+                                }
+                            });
+                        } else {
+                            ToastUtil.showToast(response.body().getMsg());
+                        }
+                    }
+                } else {
+                    ToastUtil.showToast(response.body().getMsg());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<SupplierList>> call, Throwable t) {
+                ToastUtil.showToast("网络异常:获取供应商失败");
+            }
+        });
+
     }
 
 }

@@ -5,9 +5,19 @@ public class SortModelInfo {
 	private String name;   //��ʾ������
 	private String num;   //��ʾ������
 	private String kpi;   //��ʾ������
-	private String dispatch;   //��ʾ������
+	private int dispatch;   //��ʾ������
 	private String sortLetters;  //��ʾ����ƴ��������ĸ
-	private int id;
+	private String id;
+	private String heading;
+
+	public String getHeading() {
+		return heading;
+	}
+
+
+	public void setHeading(String heading) {
+		this.heading = heading;
+	}
 
 	public String getNum() {
 		return num;
@@ -25,19 +35,19 @@ public class SortModelInfo {
 		this.kpi = kpi;
 	}
 
-	public String getDispatch() {
+	public int getDispatch() {
 		return dispatch;
 	}
 
-	public void setDispatch(String dispatch) {
+	public void setDispatch(int dispatch) {
 		this.dispatch = dispatch;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

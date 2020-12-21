@@ -15,8 +15,8 @@ public class MainPageAdapter extends FragmentPagerAdapter {
 
     private HomeFragment homeFragment;
     private TransportationManagementFragment transportationManagementFragment;
-    private CheckWayBillFragment checkWayBillFragment;
-    private NuclearFreightFragment nuclearFreightFragment;
+//    private CheckWayBillFragment checkWayBillFragment;
+//    private NuclearFreightFragment nuclearFreightFragment;
     private MineFragment mineFragment;
 
     public MainPageAdapter(android.support.v4.app.FragmentManager fm) {
@@ -40,20 +40,6 @@ public class MainPageAdapter extends FragmentPagerAdapter {
                 return transportationManagementFragment;
             }
         }else if(position==2){
-            if(checkWayBillFragment==null){
-                checkWayBillFragment = new CheckWayBillFragment();
-                return checkWayBillFragment;
-            }else{
-                return checkWayBillFragment;
-            }
-        }else if(position==3){
-            if(nuclearFreightFragment==null){
-                nuclearFreightFragment = new NuclearFreightFragment();
-                return nuclearFreightFragment;
-            }else{
-                return nuclearFreightFragment;
-            }
-        }else if(position==4){
             if(mineFragment==null){
                 mineFragment = new MineFragment();
                 return mineFragment;
@@ -67,7 +53,7 @@ public class MainPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 3;
     }
 
 

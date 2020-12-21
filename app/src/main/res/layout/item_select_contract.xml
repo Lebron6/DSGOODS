@@ -31,7 +31,8 @@
             android:textSize="12sp"
             />
         <TextView
-            android:layout_width="88dp"
+            android:id="@+id/tv_lsh"
+            android:layout_width="wrap_content"
             android:layout_height="17dp"
             android:text="HT1316516548"
             android:textColor="#ff2b2c44"
@@ -49,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
+            android:id="@+id/iv_pdf"
             android:background="@mipmap/icon_pdf"
             android:layout_width="30dp"
             android:layout_height="40dp" />
@@ -70,6 +72,7 @@
                     android:textSize="14sp"
                     />
                 <TextView
+                    android:id="@+id/tv_cyf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="南京联合物流有限公司"
@@ -90,6 +93,7 @@
                     android:textSize="14sp"
                     />
                 <TextView
+                    android:id="@+id/tv_yxq"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2019/06/27 — 2019/07/28"

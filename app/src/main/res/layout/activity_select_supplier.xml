@@ -11,7 +11,7 @@
     android:gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="40dp">
-    <com.ocean.dsgoods.view.ClearEditText
+    <EditText
         android:paddingLeft="10dp"
         android:layout_toLeftOf="@+id/tv_search"
         android:layout_marginRight="15dp"
@@ -44,31 +44,18 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-
+<com.liaoinstan.springview.widget.SpringView
+    android:id="@+id/sv_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
         <ListView
             android:id="@+id/lv_supplier"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
             android:divider="@null" />
+</com.liaoinstan.springview.widget.SpringView>
 
-        <TextView
-            android:id="@+id/dialog"
-            android:layout_width="40.0dip"
-            android:layout_height="40.0dip"
-            android:layout_gravity="center"
-            android:background="@drawable/bg_shape_blue"
-            android:gravity="center"
-            android:textColor="@color/colorMain"
-            android:textSize="20.0dip"
-            android:visibility="invisible" />
-
-        <com.ocean.dsgoods.view.SideBar
-            android:id="@+id/sidebar"
-            android:visibility="visible"
-            android:layout_width="30.0dip"
-            android:layout_height="fill_parent"
-            android:layout_gravity="right|center" />
     </FrameLayout>
 
 </LinearLayout>

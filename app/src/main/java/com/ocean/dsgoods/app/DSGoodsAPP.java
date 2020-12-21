@@ -2,8 +2,12 @@ package com.ocean.dsgoods.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.amap.api.maps.AMap;
+import com.taobao.sophix.SophixManager;
+
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -17,7 +21,12 @@ public class DSGoodsAPP extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
-
+        // 主要是添加下面这句代码
+        MultiDex.install(this);
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
+        // queryAndLoadNewPatch不可放在attachBaseContext 中，否则无网络权限，建议放在后面任意时刻，如onCreate中
+        SophixManager.getInstance().queryAndLoadNewPatch();//查询是否有新的补丁
     }
     public static Context getApplication(){
         return application;

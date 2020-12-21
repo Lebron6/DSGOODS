@@ -5,28 +5,34 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ocean.dsgoods.R;
+import com.ocean.dsgoods.entity.ContractList;
 
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ContarctStatusAdapter extends RecyclerView.Adapter {
 
-
     private Context context;
+    List<ContractList.ListBean> datas;
 
     public ContarctStatusAdapter(Context context) {
         this.context = context;
     }
 
-//    public void setDatas(HangData.OrdersBean ordersBean) {
-//        this.datas = ordersBean;
-//        notifyDataSetChanged();
-//    }
+    public void setDatas(List<ContractList.ListBean> datas) {
+        this.datas = datas;
+        notifyDataSetChanged();
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_contract_status, parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_contract_status, parent, false);
         return new ViewHolder(view);
     }
 
@@ -42,12 +48,37 @@ public class ContarctStatusAdapter extends RecyclerView.Adapter {
                 }
             });
         }
+        viewHolder.tvLsh.setText(datas.get(position).getConstract_sn());
+        viewHolder.tvCyf.setText(datas.get(position).getCom_name());
+        viewHolder.tvYxq.setText(datas.get(position).getStartTime()+"-"+datas.get(position).getEndTime());
 
+        switch (datas.get(position).getStatus()) {
+            case "1"://完成
+                viewHolder.tvStatus.setText("完成");
+                viewHolder.tvStatus.setTextColor(context.getResources().getColor(R.color.colorMain));
+                viewHolder.tvStatus.setBackgroundResource(R.drawable.bg_contarct_half_shape_blue);
+                break;
+            case "2"://待确认
+                viewHolder.tvStatus.setText("待确认");
+                viewHolder.tvStatus.setTextColor(context.getResources().getColor(R.color.colorYellow));
+                viewHolder.tvStatus.setBackgroundResource(R.drawable.bg_contarct_half_shape_orange);
+                break;
+            case "3"://进行中
+                viewHolder.tvStatus.setText("进行中");
+                viewHolder.tvStatus.setTextColor(context.getResources().getColor(R.color.colorMain));
+                viewHolder.tvStatus.setBackgroundResource(R.drawable.bg_contarct_half_shape_blue);
+                break;
+            case "4"://驳回
+                viewHolder.tvStatus.setText("驳回");
+                viewHolder.tvStatus.setTextColor(context.getResources().getColor(R.color.colorRed));
+                viewHolder.tvStatus.setBackgroundResource(R.drawable.bg_contarct_half_shape_red);
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return datas.size();
     }
 
     private OnItemClickLitener mOnItemClickLitener;
@@ -61,7 +92,16 @@ public class ContarctStatusAdapter extends RecyclerView.Adapter {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
+        @BindView(R.id.tv_lsh)
+        TextView tvLsh;
+        @BindView(R.id.iv_copy)
+        ImageView ivCopy;
+        @BindView(R.id.tv_status)
+        TextView tvStatus;
+        @BindView(R.id.tv_cyf)
+        TextView tvCyf;
+        @BindView(R.id.tv_yxq)
+        TextView tvYxq;
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);

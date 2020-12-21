@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -96,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="设置运输要求"
+                android:text="填写提货清单"
                 android:textColor="@color/colorGray"
                 android:textSize="12sp" />
 
@@ -106,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
-                android:text="填写提货清单"
+                android:text="设置运输要求"
                 android:textColor="@color/colorGray"
                 android:textSize="12sp" />
         </RelativeLayout>
@@ -172,7 +173,7 @@
                     android:layout_toRightOf="@+id/txt_supplier"
                     android:gravity="right"
                     android:text="请选择"
-                    android:textColor="#ffdbdce6"
+                    android:textColor="@color/colorGray"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -214,7 +215,7 @@
                     android:layout_toRightOf="@+id/txt_contract"
                     android:gravity="right"
                     android:text="请选择"
-                    android:textColor="#ffdbdce6"
+                    android:textColor="@color/colorGray"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -362,7 +363,7 @@
                                     android:id="@+id/tv_name_t"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="张三"
+                                    android:text=""
                                     android:textColor="#ff2b2c44"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -372,7 +373,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="1836776771"
+                                    android:text=""
                                     android:textColor="#ff2b2c44"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -383,7 +384,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                                android:text="江苏省苏州市吴中区金猫9号"
+                                android:text=""
                                 android:textColor="#ff9c9db3"
                                 android:textSize="14sp" />
 
@@ -392,7 +393,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                                android:text="大洋供应链"
+                                android:text=""
                                 android:textColor="#ff9c9db3"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -458,7 +459,7 @@
                                     android:id="@+id/tv_name_s"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="张三"
+                                    android:text=""
                                     android:textColor="#ff2b2c44"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -468,7 +469,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="1836776771"
+                                    android:text=""
                                     android:textColor="#ff2b2c44"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -479,7 +480,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                                android:text="江苏省苏州市吴中区金猫9号"
+                                android:text=""
                                 android:textColor="#ff9c9db3"
                                 android:textSize="14sp" />
 
@@ -488,7 +489,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                                android:text="大洋供应链"
+                                android:text=""
                                 android:textColor="#ff9c9db3"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -581,8 +582,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="20dp"
-                        android:text="2020/06/07  12:45"
-                        android:textColor="#ff2b2c44"
+                        android:text="                            "
+                        android:textColor="@color/colorGray"
                         android:textSize="14sp" />
 
                     <TextView
@@ -599,7 +600,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="20dp"
-                        android:text="2020/06/07  12:45"
+                        android:text="                     "
                         android:textColor="#ff2b2c44"
                         android:textSize="14sp" />
                 </RelativeLayout>
@@ -665,7 +666,7 @@
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="20dp"
-                        android:textColor="#ff2b2c44"
+                        android:textColor="@color/colorGray"
                         android:textSize="14sp" />
                 </RelativeLayout>
             </LinearLayout>
@@ -693,6 +694,7 @@
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/et_aorder"
                     android:hint="请输入"
                     android:paddingRight="15dp"
                     android:textColorHint="@color/colorEditText"
@@ -731,6 +733,7 @@
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/et_ynum"
                     android:hint="请输入"
                     android:paddingRight="15dp"
                     android:textColorHint="@color/colorEditText"
@@ -746,7 +749,6 @@
 
             </RelativeLayout>
         </RelativeLayout>
-
 
     </RelativeLayout>
 </ScrollView>

@@ -2,17 +2,17 @@ package com.ocean.dsgoods.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import com.ocean.dsgoods.R;
 import com.ocean.dsgoods.adapter.NavPagerAdapter;
-import com.ocean.dsgoods.fragment.BillTypeFragment;
+import com.ocean.dsgoods.fragment.NBillTypeFragment;
+import com.ocean.dsgoods.fragment.YBillTypeFragment;
+import com.ocean.dsgoods.tools.TitleManger;
 import com.ocean.dsgoods.view.CustomViewPager;
 
 import java.util.ArrayList;
@@ -45,7 +45,10 @@ public class BillOfLodingActivity extends BaseActivity {
     }
     @Override
     protected void initTitle() {
-
+        TitleManger manger=TitleManger.getInsetance();
+        manger.setContext(this);
+        manger.setTitle("提单管理");
+        manger.setBack();
     }
 
     @Override
@@ -56,8 +59,8 @@ public class BillOfLodingActivity extends BaseActivity {
     @Override
     protected void initViews() {
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new BillTypeFragment(0));
-        fragments.add(new BillTypeFragment(1));
+        fragments.add(new NBillTypeFragment(1));
+        fragments.add(new YBillTypeFragment());
 
         NavPagerAdapter viewPagerAdapter = new NavPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.setData(fragments);

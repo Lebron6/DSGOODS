@@ -35,11 +35,12 @@
             android:text="运输管理" />
 
         <RadioButton
+            android:visibility="gone"
             android:id="@+id/check_waybill"
             style="@style/BottomTabStyle"
             android:drawableTop="@drawable/tab_warehouse_management_selector"
             android:text="仓储管理" />
-        <RadioButton
+        <RadioButton  android:visibility="gone"
             android:id="@+id/verify_freight"
             style="@style/BottomTabStyle"
             android:drawableTop="@drawable/tab_packing_selector"

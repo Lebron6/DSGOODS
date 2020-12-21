@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorEditTextLine"
@@ -47,82 +46,6 @@
                 android:layout_height="100dp"
                 android:background="@drawable/item_bg_bill">
                 <LinearLayout
-                    android:id="@+id/layout_New_delivery_plan"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:background="@mipmap/icon_calendar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:textSize="14sp"
-                        android:text="新建提货计划"
-                        android:textColor="@color/colorMainBlack"
-
-                        />
-                </LinearLayout>
-                <LinearLayout android:id="@+id/layout_New_return_plan"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:background="@mipmap/icon_calendar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:textSize="14sp"
-                        android:text="新建返箱计划"
-                        android:textColor="@color/colorMainBlack"
-
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/layout_New_waybill"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:background="@mipmap/icon_edit_file"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:textSize="14sp"
-                        android:text="新建运单"
-                        android:textColor="@color/colorMainBlack"
-
-                        />
-                </LinearLayout>
-            </LinearLayout>
-
-        </RelativeLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-               >
-                <LinearLayout
                     android:id="@+id/layout_I_shipped_it"
                     android:orientation="vertical"
                     android:gravity="center"
@@ -166,6 +89,85 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/layout_New_delivery_plan"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="新建提货计划"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout android:id="@+id/layout_New_return_plan"  android:visibility="gone"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="新建返箱计划"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout  android:visibility="gone"
+                    android:id="@+id/layout_New_waybill"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_edit_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="新建运单"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+               >
+
+                <LinearLayout
                     android:id="@+id/layout_Bill_of_lading_management"
                     android:orientation="vertical"
                     android:gravity="center"
@@ -189,6 +191,7 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -272,50 +275,6 @@
                 android:layout_height="100dp"
                 >
                 <LinearLayout
-                    android:id="@+id/layout_contract_management"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:background="@mipmap/icon_calendar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:textSize="14sp"
-                        android:text="合同管理"
-                        android:textColor="@color/colorMainBlack"
-
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/layout_Goods_management"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:background="@mipmap/icon_calendar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:textSize="14sp"
-                        android:text="货物管理"
-                        android:textColor="@color/colorMainBlack"
-
-                        />
-                </LinearLayout>
-                <LinearLayout
                     android:id="@+id/layout_Code_scanning_packing"
                     android:orientation="vertical"
                     android:gravity="center"
@@ -323,7 +282,7 @@
                     android:layout_weight="1"
                     android:layout_height="match_parent">
                     <ImageView
-                        android:background="@mipmap/icon_edit_file"
+                        android:background="@mipmap/icon_loading_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
@@ -337,8 +296,57 @@
 
                         />
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_add_packing"
+                    android:visibility="visible"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/icon_packing_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="运单添加包装"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_contract_management"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:background="@mipmap/iocn_contract_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="14sp"
+                        android:text="合同管理"
+                        android:textColor="@color/colorMainBlack"
+
+                        />
+                </LinearLayout>
+
+
+
             </LinearLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -367,7 +375,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:visibility="invisible"
+                    android:id="@+id/layout_Goods_management"
                     android:orientation="vertical"
                     android:gravity="center"
                     android:layout_width="0dp"
@@ -383,7 +391,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="14sp"
-                        android:text="新建返箱计划"
+                        android:text="货物管理"
                         android:textColor="@color/colorMainBlack"
 
                         />

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/titlebar" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/colorEditTextLine"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="212dp"
+            android:layout_below="@+id/layout_center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical"
+            android:background="@drawable/item_bg_bill"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            <TextView
+                android:gravity="center_vertical"
+
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="上缴日期："
+                android:textColor="#ff2b2c44"
+                android:textSize="16sp"
+                />
+                <TextView
+                    android:id="@+id/tv_chose_data"
+                    android:gravity="right|center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="请选择日期"
+                    android:textColor="@color/colorGray"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+            <View
+                android:background="@color/colorEditTextLine"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <GridView
+                android:layout_marginTop="10dp"
+                android:id="@+id/gridView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="@dimen/space_size"
+                android:numColumns="3"
+                android:verticalSpacing="@dimen/space_size" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+       >
+
+        <Button
+            android:id="@+id/btn_sign_for"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_marginRight="40dp"
+            android:layout_height="44dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/btn_bg_theme"
+            android:gravity="center"
+            android:text="确认上缴"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

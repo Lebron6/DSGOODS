@@ -11,6 +11,7 @@ import com.ocean.dsgoods.R;
 import com.ocean.dsgoods.adapter.ContarctStatusAdapter;
 import com.ocean.dsgoods.adapter.GoodsManagementAdapter;
 import com.ocean.dsgoods.tools.RecyclerViewHelper;
+import com.ocean.dsgoods.tools.TitleManger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +34,10 @@ public class GoodsManagementActivity extends BaseActivity {
 
     @Override
     protected void initTitle() {
-
+        TitleManger manger=TitleManger.getInsetance();
+        manger.setContext(this);
+        manger.setTitle("货物管理");
+        manger.setBack();
     }
 
     @Override

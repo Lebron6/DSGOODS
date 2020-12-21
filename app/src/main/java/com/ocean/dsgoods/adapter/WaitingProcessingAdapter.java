@@ -47,35 +47,15 @@ public class WaitingProcessingAdapter extends RecyclerView.Adapter {
         }
         switch (position) {
             case 0:
-                viewHolder.tvType.setText("运单确认");
+                viewHolder.tvType.setText("受理");
                 viewHolder.tvNum.setText("40");
                 break;
             case 1:
-                viewHolder.tvType.setText("提货单确认");
+                viewHolder.tvType.setText("回单确认");
                 viewHolder.tvNum.setText("1");
                 break;
             case 2:
-                viewHolder.tvType.setText("装车确认");
-                viewHolder.tvNum.setText("1");
-                break;
-            case 3:
-                viewHolder.tvType.setText("开票确认");
-                viewHolder.tvNum.setText("1");
-                break;
-            case 4:
-                viewHolder.tvType.setText("合同确认");
-                viewHolder.tvNum.setText("1");
-                break;
-            case 5:
                 viewHolder.tvType.setText("运单签收");
-                viewHolder.tvNum.setText("1");
-                break;
-            case 6:
-                viewHolder.tvType.setText("运费核对");
-                viewHolder.tvNum.setText("1");
-                break;
-            case 7:
-                viewHolder.tvType.setText("付款确认");
                 viewHolder.tvNum.setText("1");
                 break;
         }
@@ -84,7 +64,7 @@ public class WaitingProcessingAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 8;
+        return 3;
     }
 
     private OnItemClickLitener mOnItemClickLitener;

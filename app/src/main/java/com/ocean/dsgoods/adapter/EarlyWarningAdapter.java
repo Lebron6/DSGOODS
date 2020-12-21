@@ -50,15 +50,11 @@ public class EarlyWarningAdapter extends RecyclerView.Adapter {
                 viewHolder.tvNum.setText("62");
                 break;
             case 1:
-                viewHolder.tvType.setText("库存预警");
+                viewHolder.tvType.setText("运单超时");
                 viewHolder.tvNum.setText("1");
                 break;
             case 2:
                 viewHolder.tvType.setText("包装到期");
-                viewHolder.tvNum.setText("1");
-                break;
-            case 3:
-                viewHolder.tvType.setText("提货延迟");
                 viewHolder.tvNum.setText("1");
                 break;
         }
@@ -67,7 +63,7 @@ public class EarlyWarningAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 3;
     }
 
     private OnItemClickLitener mOnItemClickLitener;

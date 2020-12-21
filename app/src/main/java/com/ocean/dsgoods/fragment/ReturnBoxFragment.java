@@ -52,7 +52,7 @@ public class ReturnBoxFragment extends BaseFragment {
         adapter.setOnItemClickLitener(new ReturnBoxAdapter.OnItemClickLitener() {
             @Override
             public void onItemClick(View view, int position) {
-                ContractDetailsActivity.actionStart(getActivity());
+//                ContractDetailsActivity.actionStart(getActivity());
             }
         });
     }

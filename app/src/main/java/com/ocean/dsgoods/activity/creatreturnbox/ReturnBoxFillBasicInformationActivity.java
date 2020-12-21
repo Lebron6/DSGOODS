@@ -158,16 +158,16 @@ public class ReturnBoxFillBasicInformationActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_contract:
-                SelectContractActivity.actionStart(this);
+//                SelectContractActivity.actionStart(this);
                 break;
             case R.id.layout_select_supplier:
-                SelectSupplierActivity.actionStart(this);
+//                SelectSupplierActivity.actionStart(this);
                 break;
             case R.id.layout_t_addr:
-                SelectAddressActivity.actionStart(this);
+//                SelectAddressActivity.actionStart(this, t_id);
                 break;
             case R.id.layout_s_addr:
-                SelectAddressActivity.actionStart(this);
+//                SelectAddressActivity.actionStart(this, t_id);
                 break;
             case R.id.tv_time_start:
                 break;

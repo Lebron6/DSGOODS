@@ -2,22 +2,38 @@ package com.ocean.dsgoods.activity.createwaybill;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.liaoinstan.springview.widget.SpringView;
 import com.ocean.dsgoods.R;
 import com.ocean.dsgoods.activity.BaseActivity;
-import com.ocean.dsgoods.activity.SelectAddressActivity;
-import com.ocean.dsgoods.activity.SelectContractActivity;
-import com.ocean.dsgoods.activity.SelectSupplierActivity;
-import com.ocean.dsgoods.activity.createbill.FillDeliveryListActivity;
+import com.ocean.dsgoods.activity.BillDetailsActivity;
+import com.ocean.dsgoods.adapter.BillAdapter;
+import com.ocean.dsgoods.adapter.WillBillOneAdapter;
+import com.ocean.dsgoods.api.BaseUrl;
+import com.ocean.dsgoods.api.HttpUtil;
+import com.ocean.dsgoods.entity.AddInitOne;
+import com.ocean.dsgoods.entity.ApiResponse;
+import com.ocean.dsgoods.entity.BillList;
+import com.ocean.dsgoods.tools.PreferenceUtils;
+import com.ocean.dsgoods.tools.RecyclerViewHelper;
+import com.ocean.dsgoods.tools.SimpleFooter;
+import com.ocean.dsgoods.tools.SimpleHeader;
+import com.ocean.dsgoods.tools.TitleManger;
+import com.ocean.dsgoods.tools.ToastUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by James on 2020/6/30.
@@ -44,92 +60,11 @@ public class WayBillFillBasicInformationActivity extends BaseActivity {
     TextView txtTwo;
     @BindView(R.id.txt_three)
     TextView txtThree;
-    @BindView(R.id.tv_c)
-    TextView tvC;
-    @BindView(R.id.txt_supplier)
-    TextView txtSupplier;
-    @BindView(R.id.tv_supplier)
-    TextView tvSupplier;
-    @BindView(R.id.iv_down)
-    ImageView ivDown;
-    @BindView(R.id.layout_select_supplier)
-    RelativeLayout layoutSelectSupplier;
-    @BindView(R.id.txt_contract)
-    TextView txtContract;
-    @BindView(R.id.tv_contract)
-    TextView tvContract;
-    @BindView(R.id.iv_down_o)
-    ImageView ivDownO;
-    @BindView(R.id.layout_contract)
-    LinearLayout layoutContract;
-    @BindView(R.id.txt_t)
-    TextView txtT;
-    @BindView(R.id.txt_s)
-    TextView txtS;
-    @BindView(R.id.layout_line)
-    RelativeLayout layoutLine;
-    @BindView(R.id.tv_name_t)
-    TextView tvNameT;
-    @BindView(R.id.tv_phone_t)
-    TextView tvPhoneT;
-    @BindView(R.id.tv_addr_t)
-    TextView tvAddrT;
-    @BindView(R.id.tv_company_t)
-    TextView tvCompanyT;
-    @BindView(R.id.layout_t_info)
-    LinearLayout layoutTInfo;
-    @BindView(R.id.line_t)
-    View lineT;
-    @BindView(R.id.layout_t_addr)
-    LinearLayout layoutTAddr;
-    @BindView(R.id.tv_name_s)
-    TextView tvNameS;
-    @BindView(R.id.tv_phone_s)
-    TextView tvPhoneS;
-    @BindView(R.id.tv_addr_s)
-    TextView tvAddrS;
-    @BindView(R.id.tv_company_s)
-    TextView tvCompanyS;
-    @BindView(R.id.layout_s_info)
-    LinearLayout layoutSInfo;
-    @BindView(R.id.line_s)
-    View lineS;
-    @BindView(R.id.layout_s_addr)
-    LinearLayout layoutSAddr;
-    @BindView(R.id.layout_addr)
-    RelativeLayout layoutAddr;
-    @BindView(R.id.view_line)
-    View viewLine;
-    @BindView(R.id.tv_time_start)
-    TextView tvTimeStart;
-    @BindView(R.id.tv_time_end)
-    TextView tvTimeEnd;
-    @BindView(R.id.layout_time_t)
-    LinearLayout layoutTimeT;
-    @BindView(R.id.view_s_line)
-    View viewSLine;
-    @BindView(R.id.layout_chose_t)
-    LinearLayout layoutChoseT;
-    @BindView(R.id.tv_time_arrive)
-    TextView tvTimeArrive;
-    @BindView(R.id.layout_time)
-    LinearLayout layoutTime;
-    @BindView(R.id.view_order)
-    View viewOrder;
-    @BindView(R.id.txt_order)
-    TextView txtOrder;
-    @BindView(R.id.layout_order)
-    RelativeLayout layoutOrder;
-    @BindView(R.id.view_num)
-    View viewNum;
-    @BindView(R.id.txt_order_num)
-    TextView txtOrderNum;
-    @BindView(R.id.layout_num)
-    RelativeLayout layoutNum;
-    @BindView(R.id.layout_bottom)
-    RelativeLayout layoutBottom;
-    @BindView(R.id.btn_next)
-    Button btnNext;
+    @BindView(R.id.rv_list)
+    RecyclerView rvList;
+    @BindView(R.id.sv_list)
+    SpringView svList;
+    private WillBillOneAdapter adapter;
 
     public static void actionStart(Context context) {
         Intent intent = new Intent(context, WayBillFillBasicInformationActivity.class);
@@ -138,51 +73,85 @@ public class WayBillFillBasicInformationActivity extends BaseActivity {
 
     @Override
     protected void initTitle() {
-
+        TitleManger manger=TitleManger.getInsetance();
+        manger.setContext(this);
+        manger.setTitle("新建运单-中转");
+        manger.setBack();
     }
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.activity_fill_basic_information;
+        return R.layout.activity_way_bill_fill_basic_information;
     }
 
     @Override
     protected void initViews() {
+        adapter = new WillBillOneAdapter(this);
+        initSpringViewStyle();
+    }
 
+    private void initSpringViewStyle() {
+        svList.setType(SpringView.Type.FOLLOW);
+        svList.setListener(onFreshListener);
+        svList.setHeader(new SimpleHeader(this));
+        svList.setFooter(new SimpleFooter(this));
+    }
+
+    private int page = 1;
+    SpringView.OnFreshListener onFreshListener = new SpringView.OnFreshListener() {
+        @Override
+        public void onRefresh() {
+            page = 1;
+            getData();
+        }
+
+        @Override
+        public void onLoadmore() {
+            page = ++page;
+            getData();
+        }
+    };
+
+    List<AddInitOne.ListBean> listBeans = new ArrayList<>();
+
+    private void getData() {
+        HttpUtil.createRequest(TAG, BaseUrl.getInstence().addInitOne()).addInitOne(PreferenceUtils.getInstance().getUserToken(), page + "").enqueue(new Callback<ApiResponse<AddInitOne>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<AddInitOne>> call, Response<ApiResponse<AddInitOne>> response) {
+                if (svList != null) {
+                    svList.onFinishFreshAndLoad();
+                }
+                if (response.body() != null) {
+                    if (response.body().getCode() == 1) {
+                        if (page == 1) {
+                            listBeans.clear();
+                            listBeans.addAll(response.body().getData().getList());
+                            RecyclerViewHelper.initRecyclerViewV(WayBillFillBasicInformationActivity.this, rvList, false, adapter);
+                        } else {
+                            listBeans.addAll(response.body().getData().getList());
+                        }
+
+                        adapter.setDatas(listBeans);
+                        adapter.setOnItemClickLitener(new WillBillOneAdapter.OnItemClickLitener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                            }
+                        });
+                    } else {
+                        ToastUtil.showToast(response.body().getMsg());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<AddInitOne>> call, Throwable t) {
+                ToastUtil.showToast("网络异常:获取列表数据失败");
+            }
+        });
     }
 
     @Override
     protected void initDatas() {
-
+        getData();
     }
-
-
-    @OnClick({R.id.layout_contract, R.id.layout_select_supplier, R.id.layout_t_addr, R.id.layout_s_addr, R.id.tv_time_start, R.id.tv_time_end, R.id.tv_time_arrive, R.id.btn_next})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.layout_contract:
-                SelectContractActivity.actionStart(this);
-                break;
-            case R.id.layout_select_supplier:
-                SelectSupplierActivity.actionStart(this);
-                break;
-            case R.id.layout_t_addr:
-                SelectAddressActivity.actionStart(this);
-                break;
-            case R.id.layout_s_addr:
-                SelectAddressActivity.actionStart(this);
-                break;
-            case R.id.tv_time_start:
-                break;
-            case R.id.tv_time_end:
-                break;
-            case R.id.tv_time_arrive:
-                break;
-            case R.id.btn_next:
-                FillDeliveryListActivity.actionStart(this);
-                break;
-        }
-    }
-
-
 }

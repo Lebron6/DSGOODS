@@ -25,17 +25,19 @@ public abstract class BaseFragment extends Fragment{
     protected String userId;
     protected String TAG;
     protected boolean useEventBus=false;
+    protected boolean useMap=false;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(attachLayoutRes(), container, false);
         unbinder = ButterKnife.bind(this, view);
-//        userToken= PreferenceUtils.getInstance().getUserToken();
-//        userId= PreferenceUtils.getInstance().getUserId();
-
         initViews();
         if (useEventBus==true){
             EventBus.getDefault().register(this);
+        }
+
+        if (useMap==true){
+            initMapView(savedInstanceState);
         }
         TAG=getClass().getSimpleName();
         loggerSimpleName();
@@ -44,6 +46,9 @@ public abstract class BaseFragment extends Fragment{
     }
     public void loggerSimpleName(){
         Log.d("当前所处界面 ：",getClass().getSimpleName());
+    }
+    public void initMapView(Bundle savedInstanceState){
+
     }
 
 

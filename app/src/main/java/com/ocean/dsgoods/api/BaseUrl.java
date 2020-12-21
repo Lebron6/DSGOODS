@@ -15,267 +15,575 @@ public class BaseUrl {
         return baseUrl;
     }
 
-    public String ipAddress  = "https://dh.resttcar.com/";   //线上服务器
-//    public String ipAddress  = "http://test.resttcar.com/";   //测试服务器
+//    public String ipAddress = "http://cu.idalc.com/";   //线上服务器
+    public String ipAddress  = "http://cu.oceanscm.com/";   //测试服务器
 
     /**
-     * 用户登录
+     * 注册
      */
-    public String getUserLoginUrl() {
-        return ipAddress + "car/api/index/login/";
+    public String getUserRegisterUrl() {
+        return ipAddress + "/member/login/register/";
     }
 
     /**
-     * 外卖营业状态设置--获取数据
+     * 注册发送验证码
      */
-    public String getPanelCinfig() {
-        return ipAddress + "car/api/panel/config/";
+    public String sendSMS() {
+        return ipAddress + "/member/login/send_sms/";
     }
 
     /**
-     * 外卖营业状态设置--提交数据
+     * 密码登录
      */
-    public String panelCinfig() {
-        return ipAddress + "car/api/panel/config/";
+    public String passwordLogin() {
+        return ipAddress + "/member/login/login_password/";
     }
 
     /**
-     * 我的--个人中心
+     * 忘记密码
      */
-    public String userCenter() {
-        return ipAddress + "car/api/panel/index/";
-    }
-
-    
-    /**
-     * 用户退出登录
-     */
-    public String loginOut() {
-        return ipAddress + "car/api/index/logout/";
+    public String passwordForget() {
+        return ipAddress + "/member/login/password_forget/";
     }
 
     /**
-     * 收银台--数据
+     * 个人资料
      */
-    public String getdeskIndexData() {
-        return ipAddress + "car/api/desk/index/";
+    public String getInfo() {
+        return ipAddress + "/member/userapp/getInfo/";
     }
 
     /**
-     * 收银台--挂单数据
+     * 个人资料修改初始化
      */
-    public String getHang() {
-        return ipAddress + "car/api/desk/hang/";
+    public String getInfoInit() {
+        return ipAddress + "/member/userapp/getInfoInit/";
     }
 
     /**
-     * 收银台--取消挂单数据
+     * 个人资料保存
      */
-    public String getDeleteHang() {
-        return ipAddress + "car/api/desk/hang_del/";
+    public String saveInfo() {
+        return ipAddress + "/member/userapp/saveInfo/";
     }
 
     /**
-     * 收银台--提交挂单数据
+     * 修改头像
+     * @return
      */
-    public String getDeskConfirm() {
-        return ipAddress + "car/api/desk/confirm/";
+    public String changeHeadimg() {
+        return ipAddress + "/member/userapp/changeHeadimg/";
     }
 
     /**
-     * 收银台--取单
+     * 验证原密码
      */
-    public String getHang_get() {
-        return ipAddress + "car/api/desk/hang_get/";
+    public String confirmPassword() {
+        return ipAddress + "/member/userapp/confirmPassword/";
     }
 
     /**
-     * 收银台--确定订单--检测订单
+     * 修改密码
      */
-    public String checkOrder() {
-        return ipAddress + "car/api/desk/check_order/";
+    public String savePassword() {
+        return ipAddress + "/member/userapp/savePassword/";
     }
 
     /**
-     * 订单--获取数据
+     * 发送邮箱验证码
      */
-    public String panelOrders() {
-        return ipAddress + "car/api/panel/orders/";
+    public String sendMail() {
+        return ipAddress + "/member/user/sendMail/";
     }
 
     /**
-     * 订单--接单
+     * 修改邮箱
      */
-    public String orderConfirm() {
-        return ipAddress + "car/api/panel/order_confirm/";
+    public String saveEmail() {
+        return ipAddress + "/member/user/saveEmail/";
     }
 
     /**
-     * 订单--拒绝接单
+     * 发送短信验证码
      */
-    public String orderReject() {
-        return ipAddress + "car/api/panel/order_reject/";
+    public String sendSms() {
+        return ipAddress + "/member/user/sendSms/";
     }
 
     /**
-     * 订单--出单
+     * 修改手机号
      */
-    public String orderConfirm2() {
-        return ipAddress + "car/api/panel/order_confirm2/";
+    public String savePhone() {
+        return ipAddress + "/member/user/savePhone/";
     }
 
     /**
-     * 菜单管理--品牌菜单/提交数据
+     * 企业信息查看
      */
-    public String goodBrand() {
-        return ipAddress + "car/api/goods/brand/";
+    public String getCompany() {
+        return ipAddress + "/member/user/getCompany/";
     }
 
     /**
-     * 菜单管理--餐车菜单
+     * 企业信息保存
      */
-    public String goodsIndex() {
-        return ipAddress + "car/api/goods/index/";
-    }
-
-    /**
-     * 菜单管理--餐车菜单--商品上下架
-     */
-    public String goodsOnOff() {
-        return ipAddress + "car/api/goods/goods_onoff/";
-    }
-
-    /**
-     * 菜单管理--餐车菜单--商品删除
-     */
-    public String goodsDelete() {
-        return ipAddress + "car/api/goods/goods_delete/";
-    }
-
-    /**
-     * 菜单管理--餐车菜单--商品分类列表
-     */
-    public String classList() {
-        return ipAddress + "car/api/goods/class_list/";
-    }
-
-    /**
-     * 菜单管理--餐车菜单--商品分类删除
-     */
-    public String deleteClass() {
-        return ipAddress + "car/api/goods/goods_class_delete/";
-    }
-
-    /**
-     * 菜单管理--餐车菜单--商品分类添加
-     */
-    public String addClass() {
-        return ipAddress + "car/api/goods/class_add/";
-    }
-
-    /**
-     * 菜单管理--餐车菜单--商品分类排序
-     */
-    public String classSort() {
-        return ipAddress + "car/api/goods/class_sort/";
+    public String saveCompany() {
+        return ipAddress + "/member/user/saveCompany/";
     }
 
     /**
      * 上传图片
      */
-    public String upLoadPic() {
-        return ipAddress + "car/api/ajax/upload/";
+    public String uploadFile() {
+        return ipAddress + "/member/uploads/uploadfile/";
     }
 
     /**
-     * 添加商品
+     * 获取地址
      */
-    public String addGoods() {
-        return ipAddress + "car/api/goods/add/";
+    public String getArea() {
+        return ipAddress + "/member/userapp/getArea/";
     }
 
     /**
-     * 原料采购--原料列表
+     * 员工列表
      */
-    public String materialIndex() {
-        return ipAddress + "car/api/material/index/";
+    public String staffIndex() {
+        return ipAddress + "/member/user/staffIndex/";
     }
 
     /**
-     * 原料采购--确定订单
+     * 员工添加初始化
      */
-    public String materialConfirm() {
-        return ipAddress + "car/api/material/confirm/";
+    public String initUser() {
+        return ipAddress + "/member/user/initUser/";
     }
 
     /**
-     * 原料采购--订单列表
+     * 员工添加
      */
-    public String materialOrders() {
-        return ipAddress + "car/api/material/orders/";
+    public String staffAdd() {
+        return ipAddress + "/member/user/staffAdd/";
     }
 
     /**
-     * 原料采购--订单列表--订单详细
+     * 员工删除
      */
-    public String materialDetail() {
-        return ipAddress + "car/api/material/detail/";
+    public String staffDelete() {
+        return ipAddress + "/member/userapp/staffDelete/";
     }
 
     /**
-     * 财务统计--财务信息
+     * 员工修改初始化
      */
-    public String cwInfo() {
-        return ipAddress + "car/api/caiwu/info/";
+    public String staffEdit() {
+        return ipAddress + "/member/user/staffEdit/";
     }
 
     /**
-     * 财务统计--财务列表
+     * 员工修改
      */
-    public String cwIndex() {
-        return ipAddress + "car/api/caiwu/index/";
+    public String staffUpdate() {
+        return ipAddress + "/member/user/staffUpdate/";
     }
 
     /**
-     * 财务统计--提交提现
+     * 全部合同
      */
-    public String cwTiXian() {
-        return ipAddress + "car/api/caiwu/tixian/";
+    public String constractCheckList() {
+        return ipAddress + "/constract/constractt/constract_check_list/";
     }
 
     /**
-     * 通知中心--消息列表
+     * 合同详情
      */
-    public String messageIndex() {
-        return ipAddress + "car/api/message/index/";
+    public String constractCheckInfo() {
+        return ipAddress + "/constract/constractt/constract_check_info/";
     }
 
     /**
-     * 设置--餐车信息
+     * 驳回合同
      */
-    public String carIndex() {
-        return ipAddress + "car/api/car/index/";
+    public String constractReject() {
+        return ipAddress + "/constract/constractt/constract_reject/";
     }
 
     /**
-     * 设置--编辑信息--提交数据
+     * 通过合同
      */
-    public String editCarInfo() {
-        return ipAddress + "car/api/car/add/";
+    public String constractSure() {
+        return ipAddress + "/constract/constractt/constract_sure/";
     }
 
     /**
-     * 订单--订单管理--订单列表
+     * 提货地址
      */
-    public String orderIndex() {
-        return ipAddress + "car/api/order/index/";
+    public String take_address() {
+        return ipAddress + "//takeGoods/index/take_address/";
     }
 
     /**
-     * 订单--订单管理--订单列表--订单详细
+     * 收货地址
      */
-    public String orderDetails() {
-        return ipAddress + "car/api/order/detail/";
+    public String shipping_address() {
+        return ipAddress + "/takeGoods/index/shipping_address/";
     }
 
+    /**
+     * 供应商列表
+     */
+    public String supplier_list() {
+        return ipAddress + "/takeGoods/index/supplier_list/";
+    }
+
+    /**
+     * 合同列表
+     */
+    public String contract_list() {
+        return ipAddress + "/takeGoods/index/contract_list/";
+    }
+
+    /**
+     * 合同详情
+     */
+    public String contract_info() {
+        return ipAddress + "/takeGoods/index/contract_info/";
+    }
+
+    /**
+     * 报价单详情
+     */
+    public String quotation_info() {
+        return ipAddress + "/takeGoods/index/quotation_info/";
+    }
+
+    /**
+     * 货物清单(添加和编辑)
+     */
+    public String goods_list() {
+        return ipAddress + "/takeGoods/index/goods_list/";
+    }
+
+    /**
+     * 运输要求配置数据
+     */
+    public String config() {
+        return ipAddress + "/takeGoods/index/config/";
+    }
+
+    /**
+     * 添加提货计划
+     */
+    public String add_take() {
+        return ipAddress + "/takeGoods/operate/add_take/";
+    }
+
+    /**
+     * 提单列表
+     */
+    public String take_list() {
+        return ipAddress + "/takeGoods/operate/take_list/";
+    }
+
+    /**
+     * 货物清单
+     */
+    public String operate_goods_list() {
+        return ipAddress + "/takeGoods/operate/goods_list/";
+    }
+
+    /**
+     * 提货单作废
+     */
+    public String invalid_order() {
+        return ipAddress + "/takeGoods/operate/invalid_order/";
+    }
+
+    /**
+     * 提货单删除
+     */
+    public String del_order() {
+        return ipAddress + "/takeGoods/operate/del_order/";
+    }
+
+    /**
+     * 提货单通过
+     */
+    public String pass_order() {
+        return ipAddress + "/takeGoods/operate/pass_order/";
+    }
+
+    /**
+     * 提货单驳回
+     */
+    public String reject_order() {
+        return ipAddress + "/takeGoods/operate/reject_order/";
+    }
+
+    /**
+     * 提货单详情
+     */
+    public String take_info() {
+        return ipAddress + "/takeGoods/operate/take_info/";
+    }
+
+    /**
+     * 提货单详情(编辑)
+     */
+    public String edit_info() {
+        return ipAddress + "/takeGoods/operate/edit_info/";
+    }
+
+    /**
+     * 编辑提货计划
+     */
+    public String operate_edit() {
+        return ipAddress + "/takeGoods/operate/edit/";
+    }
+
+    /**
+     * 提货车辆轨迹
+     */
+    public String operate_track() {
+        return ipAddress + "/takeGoods/operate/track/";
+    }
+
+    /**
+     * 新建运单-选择物流公司
+     */
+    public String addInitOne() {
+        return ipAddress + "/waybill/waybill/addInitOne/";
+    }
+
+    /**
+     * 装车清单
+     */
+    public String loadingGoodsList() {
+        return ipAddress + "/takeGoods/loading/goods_list_ios/";
+    }
+
+    /**
+     * 装车驳回
+     */
+    public String affirmTake() {
+        return ipAddress + "/takeGoods/loading/affirm_take/";
+    }
+
+    /**
+     * 新建运单-选择提货单
+     */
+    public String addInitTwo() {
+        return ipAddress + "/waybill/waybill/addInitTwo/";
+    }
+
+    /**
+     * 我发运的-运单列表
+     */
+    public String waybillList() {
+        return ipAddress + "/waybill/shipper/waybill_list/";
+    }
+
+    /**
+     * 通过运单
+     */
+    public String shipperConfirm() {
+        return ipAddress + "/waybill/shipper/confirm/";
+    }
+
+    /**
+     * 运单详情
+     */
+    public String waybillInfo() {
+        return ipAddress + "/waybill/shipper/waybill_info/";
+    }
+
+    /**
+     * 运单货物列表
+     */
+    public String waybillGoods() {
+        return ipAddress + "/waybill/shipper/waybill_goods/";
+    }
+
+    /**
+     * 驳回运单
+     */
+    public String shipperReject() {
+        return ipAddress + "/waybill/shipper/reject/";
+    }
+
+    /**
+     * 回单确认
+     */
+    public String shipperAffirm() {
+        return ipAddress + "/waybill/shipper/affirm/";
+    }
+
+    /**
+     * 回单确认-上传图片
+     */
+    public String dispatchUploads() {
+        return ipAddress + "/waybill/dispatch/uploads/";
+    }
+
+    /**
+     * 运单列表-我收的
+     */
+    public String pickupList() {
+        return ipAddress + "/waybill/shipper/pickup_list/";
+    }
+
+    /**
+     * 运单添加包装-列表
+     */
+    public String bindWillList() {
+        return ipAddress + "/waybill/waybillbind/bindwilllist/";
+    }
+
+    /**
+     * 已添加货物列表
+     */
+    public String wayBillBindGoodList() {
+        return ipAddress + "/waybill/waybillbind/good_list/";
+    }
+
+    /**
+     * 已扫码货物清单
+     */
+    public String scanGoodInfo() {
+        return ipAddress + "/waybill/waybillbind/scan_good_info/";
+    }
+
+    /**
+     * 扫码
+     */
+    public String scanQr() {
+        return ipAddress + "/waybill/waybillbind/scanqr/";
+    }
+
+    /**
+     * 已扫码货物清单-解除绑定
+     */
+    public String unbindGood() {
+        return ipAddress + "/waybill/waybillbind/unbind_good/";
+    }
+
+    /**
+     * 手工绑定列表
+     */
+    public String handBindList() {
+        return ipAddress + "/waybill/handbind/handbindlist/";
+    }
+
+    /**
+     * 点击选择包装详情
+     */
+    public String handBindInfo() {
+        return ipAddress + "/waybill/handbind/handbindinfo/";
+    }
+
+    /**
+     * 手工绑定提交
+     */
+    public String handBindSave() {
+        return ipAddress + "/waybill/handbind/handbindsave/";
+    }
+
+    /**
+     * 首页
+     */
+    public String shipperHome() {
+        return ipAddress + "/waybill/shipper/home/";
+    }
+
+    /**
+     * 首页查找
+     */
+    public String homeSearch() {
+        return ipAddress + "/waybill/shipper/home_search/";
+    }
+
+    /**
+     * 获取周转箱信息
+     */
+    public String enchaseRevolveGet() {
+        return ipAddress + "/packing/enchase/revolve_get/";
+    }
+
+    /**
+     * 周转箱装货
+     */
+    public String revolveGoodsSave() {
+        return ipAddress + "/packing/enchase/revolve_goods_save/";
+    }
+
+    /**
+     * 周转箱装货-编辑保存
+     */
+    public String revolveEditSave() {
+        return ipAddress + "/packing/enchase/revolve_edit_save/";
+    }
+
+    /**
+     * 周转箱解除绑定
+     */
+    public String revolveUnbind() {
+        return ipAddress + "/packing/enchase/revolve_unbind/";
+    }
+
+    /**
+     * 获取普通箱信息
+     */
+    public String enchasePackingGet() {
+        return ipAddress + "/packing/enchase/packing_get/";
+    }
+
+    /**
+     * 普通包装装货
+     */
+    public String packingGoodsSave() {
+        return ipAddress + "/packing/enchase/packing_goods_save/";
+    }
+
+    /**
+     * 普通箱解除绑定
+     */
+    public String packingUnbind() {
+        return ipAddress + "/packing/enchase/packing_unbind/";
+    }
+
+    /**
+     * 普通箱装货-编辑保存
+     */
+    public String packingEditSave() {
+        return ipAddress + "/packing/enchase/packing_edit_save/";
+    }
+
+
+    /**
+     * 运单地图轨迹
+     */
+    public String mapTrailList() {
+        return ipAddress + "/waybill/shipper/map_trail_list/";
+    }
+
+    /**
+     * 运单轨迹
+     */
+    public String trailList() {
+        return ipAddress + "/waybill/shipper/trail_list/";
+    }
+
+    /**
+     * 获取签收人名称
+     */
+    public String getSignName() {
+        return ipAddress + "/waybill/shipper/get_sign_name/";
+    }
+
+    /**
+     * 运单签收
+     */
+    public String shipperSign() {
+        return ipAddress + "//waybill/shipper/sign/";
+    }
 }

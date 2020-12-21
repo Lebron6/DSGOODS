@@ -2,7 +2,6 @@ package com.ocean.dsgoods.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.widget.LinearLayout;
@@ -12,14 +11,13 @@ import android.widget.TextView;
 
 import com.ocean.dsgoods.R;
 import com.ocean.dsgoods.adapter.NavPagerAdapter;
-import com.ocean.dsgoods.fragment.BillTypeFragment;
 import com.ocean.dsgoods.fragment.ContractStatusFragment;
+import com.ocean.dsgoods.tools.TitleManger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by James on 2020/7/9.
@@ -51,10 +49,12 @@ public class ContractManagementAvtivity extends BaseActivity {
         context.startActivity(intent);
     }
 
-
     @Override
     protected void initTitle() {
-
+        TitleManger manger=TitleManger.getInsetance();
+        manger.setContext(this);
+        manger.setTitle("合同管理");
+        manger.setBack();
     }
 
     @Override
@@ -65,10 +65,10 @@ public class ContractManagementAvtivity extends BaseActivity {
     @Override
     protected void initViews() {
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new ContractStatusFragment(0));
-        fragments.add(new ContractStatusFragment(1));
-        fragments.add(new ContractStatusFragment(2));
-        fragments.add(new ContractStatusFragment(3));
+        fragments.add(new ContractStatusFragment(""));
+        fragments.add(new ContractStatusFragment("2"));
+        fragments.add(new ContractStatusFragment("3"));
+        fragments.add(new ContractStatusFragment("4"));
 
         NavPagerAdapter viewPagerAdapter = new NavPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.setData(fragments);

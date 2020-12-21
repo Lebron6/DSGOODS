@@ -10,7 +10,6 @@
     android:layout_height="105dp">
     <ImageView
         android:id="@+id/iv_icon"
-        android:background="@color/colorMain"
         android:layout_gravity="center_vertical"
         android:layout_width="48dp"
         android:layout_height="48dp" />

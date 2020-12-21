@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,11 +15,25 @@ import android.widget.TextView;
 import com.ocean.dsgoods.R;
 import com.ocean.dsgoods.adapter.PackageManagementAdapter;
 import com.ocean.dsgoods.adapter.StaffManagementAdapter;
+import com.ocean.dsgoods.api.BaseUrl;
+import com.ocean.dsgoods.api.HttpUtil;
+import com.ocean.dsgoods.entity.ApiResponse;
+import com.ocean.dsgoods.entity.StaffList;
+import com.ocean.dsgoods.tools.ListToStringTest;
+import com.ocean.dsgoods.tools.PreferenceUtils;
 import com.ocean.dsgoods.tools.RecyclerViewHelper;
+import com.ocean.dsgoods.tools.TitleManger;
+import com.ocean.dsgoods.tools.ToastUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by James on 2020/7/22.
@@ -42,14 +57,21 @@ public class StaffManagementActivity extends BaseActivity {
     Button btnFinish;
     @BindView(R.id.layout_bottom)
     RelativeLayout layoutBottom;
+    private ApiResponse<StaffList> body;
+    private StaffManagementAdapter adapter;
 
     public static void actionStart(Context context) {
         Intent intent = new Intent(context, StaffManagementActivity.class);
         context.startActivity(intent);
     }
+
     @Override
     protected void initTitle() {
-
+        TitleManger manger = TitleManger.getInsetance();
+        manger.setContext(this);
+        manger.setTitle("员工管理");
+        manger.setBack();
+        getStaffList();
     }
 
     @Override
@@ -59,22 +81,93 @@ public class StaffManagementActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        StaffManagementAdapter adapter = new StaffManagementAdapter(this);
-        RecyclerViewHelper.initRecyclerViewV(this, rvStaff, false, adapter);
     }
 
     @Override
     protected void initDatas() {
-
+        getStaffList();
+        cbSelectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    if (body != null && body.getData()!=null&& body.getData().getList().size() > 0 && body.getData().getList() != null) {
+                        for (int i = 0; i < body.getData().getList().size(); i++) {
+                            body.getData().getList().get(i).setSelectStatus(1);
+                        }
+                        adapter.setDatas(body.getData());
+                    }
+                } else {
+                    if (body != null &&  body.getData().getList().size() > 0 &&  body.getData().getList() != null) {
+                        for (int i = 0; i <  body.getData().getList().size(); i++) {
+                            body.getData().getList().get(i).setSelectStatus(0);
+                        }
+                        adapter.setDatas(body.getData());
+                    }
+                }
+            }
+        });
     }
+    private void getStaffList() {
+        HttpUtil.createRequest(TAG, BaseUrl.getInstence().staffIndex()).staffList(PreferenceUtils.getInstance().getUserToken()).enqueue(new Callback<ApiResponse<StaffList>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<StaffList>> call, Response<ApiResponse<StaffList>> response) {
+                body = response.body();
+                if (body.getCode() == 1) {
+                    adapter = new StaffManagementAdapter(StaffManagementActivity.this);
+                    adapter.setDatas(body.getData());
+                    RecyclerViewHelper.initRecyclerViewV(StaffManagementActivity.this, rvStaff, false, adapter);
+                } else {
+                    ToastUtil.showToast(body.getMsg());
+                }
+            }
 
-    @OnClick({R.id.btn_delete, R.id.btn_finish})
+            @Override
+            public void onFailure(Call<ApiResponse<StaffList>> call, Throwable t) {
+                ToastUtil.showToast("网络异常:获取员工列表失败");
+            }
+        });
+    }
+    @OnClick({R.id.btn_delete, R.id.btn_finish,R.id.tv_add})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_delete:
+                List<String> deleteSelects = new ArrayList<>();
+                if (body != null && body.getData().getList().size() > 0 && body.getData().getList() != null) {
+                    for (int i = 0; i < body.getData().getList().size(); i++) {
+                        if (body.getData().getList().get(i).getSelectStatus() == 1) {
+                            deleteSelects.add(body.getData().getList().get(i).getId());
+                        }
+                    }
+                    delete(deleteSelects);
+                } else {
+                    ToastUtil.showToast("暂无代操作司机");
+
+                }
                 break;
-            case R.id.btn_finish:
+            case R.id.btn_finish:finish();
+                break;
+                case R.id.tv_add:AddStaffActivity.actionStart(this);
                 break;
         }
     }
+    private void delete(List<String> selects) {
+        HttpUtil.createRequest(TAG, BaseUrl.getInstence().staffDelete()).deleteStaff(PreferenceUtils.getInstance().getUserToken(),
+                ListToStringTest.listToString3(selects, ',')).enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body().getCode() == 1) {
+                    ToastUtil.showToast("删除成功");
+                    finish();
+                } else {
+                    ToastUtil.showToast(response.body().getMsg());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ToastUtil.showToast("网络异常:操作失败");
+            }
+        });
+    }
+
 }

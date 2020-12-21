@@ -25,6 +25,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:id="@+id/layout_t"
+                android:visibility="gone"
                 android:background="@drawable/item_bg_orange"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
@@ -65,7 +66,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <Button
-
                         android:id="@+id/btn_updata_bill"
                         style="?android:attr/borderlessButtonStyle"
                         android:layout_width="0dp"
@@ -574,7 +574,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:text="2020/5/20"
+                            android:text=""
                             android:textColor="#ff2b2c44"
                             android:textSize="14sp" />
 
@@ -705,7 +705,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="总体积(m3)："
+                            android:text="总体积(m³)："
                             android:textColor="#ff9c9db3"
                             android:textSize="14sp" />
 
@@ -809,47 +809,111 @@
                 </LinearLayout>
             </RelativeLayout>
 
-
+<LinearLayout
+    android:id="@+id/layout_see_list"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/item_bg_bill"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <ImageView
+        android:background="@mipmap/icon_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginLeft="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="22dp"
+    android:text="查看货物清单"
+    android:textColor="@color/colorMain"
+    android:textSize="16sp"
+    />
+</LinearLayout>
         </LinearLayout>
         </ScrollView>
         <LinearLayout
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_below="@+id/layout_c"
             android:id="@+id/layout_button"
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:layout_below="@+id/layout_c"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
             android:background="@color/colorWhite"
             android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_see_list"
-                style="?android:attr/borderlessButtonStyle"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+            <LinearLayout
+                android:id="@+id/layout_see_map"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="44dp"
-                android:background="@drawable/btn_bg_last"
-                android:gravity="center"
-                android:text="查看货物清单"
-                android:textColor="@color/colorMainBlack"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:background="@drawable/layout_bg_gray"
+                android:gravity="center">
 
-            <Button
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/icon_location" />
 
-                android:id="@+id/btn_see_car_info"
-                style="?android:attr/borderlessButtonStyle"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="查看提货车辆信息"
+                    android:textColor="@color/colorMain"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="visible"
+                android:id="@+id/layout_reject"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/item_bg_orange"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/icon_reject" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="驳回"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout  android:visibility="gone"
+                android:id="@+id/layout_accept"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="20dp"
+                android:layout_weight="1"
                 android:background="@drawable/btn_bg_theme"
-                android:gravity="center"
-                android:text="查看提货车辆信息"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp" />
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/icon_adopt" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="通过"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
 
         </LinearLayout>
 

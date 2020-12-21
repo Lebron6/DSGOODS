@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
-                android:text="填写提货清单"
+                android:text="设置运输要求"
                 android:textColor="#ff3d68eb"
                 android:textSize="12sp" />
         </RelativeLayout>
@@ -148,43 +148,28 @@
                         android:text="服务方式"
                         android:textColor="#ff2b2c44"
                         android:textSize="14sp" />
-
                     <LinearLayout
+                        android:id="@+id/layout_service_type"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true">
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical">
 
-                        <RadioGroup
-                            android:id="@+id/rg_service_type"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tv_service_type"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="请选择"
+                            android:textColor="#ff2b2c44"
+                            android:textSize="14sp" />
 
-                            <RadioButton
-                                android:id="@+id/rb_delivery"
-                                android:layout_width="88dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="20dp"
-                                android:background="@drawable/radio_service_type"
-                                android:button="@null"
-                                android:checked="true"
-                                android:gravity="center"
-                                android:text="送货上门"
-                                android:textColor="@drawable/text_color_bill_type"
-                                android:textSize="14sp" />
-
-                            <RadioButton
-                                android:id="@+id/rb_take_your_own"
-                                android:layout_width="60dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/radio_service_type"
-                                android:button="@null"
-                                android:gravity="center"
-                                android:text="自提"
-                                android:textColor="@drawable/text_color_bill_type"
-                                android:textSize="14sp" />
-                        </RadioGroup>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/icon_down_z" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -205,56 +190,28 @@
                         android:text="运输时效"
                         android:textColor="#ff2b2c44"
                         android:textSize="14sp" />
-
                     <LinearLayout
+                        android:id="@+id/layout_transport_time"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true">
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical">
 
-                        <RadioGroup
-                            android:id="@+id/rg_type"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tv_transport_time"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="请选择"
+                            android:textColor="#ff2b2c44"
+                            android:textSize="14sp" />
 
-                            <RadioButton
-                                android:id="@+id/rb_simple"
-                                android:layout_width="60dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="20dp"
-                                android:background="@drawable/radio_service_type"
-                                android:button="@null"
-                                android:checked="true"
-                                android:gravity="center"
-                                android:text="普通"
-                                android:textColor="@drawable/text_color_bill_type"
-                                android:textSize="14sp" />
-
-                            <RadioButton
-                                android:id="@+id/rb_harry"
-                                android:layout_width="60dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="20dp"
-                                android:background="@drawable/radio_service_type"
-
-                                android:button="@null"
-                                android:gravity="center"
-                                android:text="加急"
-                                android:textColor="@drawable/text_color_bill_type"
-                                android:textSize="14sp" />
-
-                            <RadioButton
-                                android:id="@+id/rb_jit"
-                                android:layout_width="60dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/radio_service_type"
-                                android:button="@null"
-                                android:gravity="center"
-                                android:text="JIT"
-                                android:textColor="@drawable/text_color_bill_type"
-                                android:textSize="14sp" />
-                        </RadioGroup>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/icon_down_z" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -272,7 +229,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="运输时效"
+                        android:text="运输方式"
                         android:textColor="#ff2b2c44"
                         android:textSize="14sp" />
 
@@ -285,11 +242,12 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/tv_transport_prescription"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginRight="5dp"
                             android:gravity="center"
-                            android:text="公路零担"
+                            android:text="请选择"
                             android:textColor="#ff2b2c44"
                             android:textSize="14sp" />
 
@@ -319,7 +277,7 @@
                         android:textSize="14sp" />
 
                     <LinearLayout
-                        android:id="@+id/laayout_car_requirement"
+                        android:id="@+id/layout_car_requirement"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
@@ -327,11 +285,54 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/tv_car_requirement"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginRight="5dp"
                             android:gravity="center"
-                            android:text="无要求"
+                            android:text="请选择"
+                            android:textColor="#ff2b2c44"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/icon_down_z" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorEditTextLine" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="结算方式"
+                        android:textColor="#ff2b2c44"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_settleSty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tv_settleSty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="请选择"
                             android:textColor="#ff2b2c44"
                             android:textSize="14sp" />
 

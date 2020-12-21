@@ -9,10 +9,15 @@
         android:background="@color/colorEditTextLine"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <com.liaoinstan.springview.widget.SpringView
+            android:id="@+id/sv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_address"
             android:paddingBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        </com.liaoinstan.springview.widget.SpringView>
     </LinearLayout>
 </LinearLayout>
